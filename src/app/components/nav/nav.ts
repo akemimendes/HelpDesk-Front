@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
+
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -12,11 +16,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatCardModule } from '@angular/material/card';
+
 
 @Component({
   selector: 'app-nav',
   imports: [
+    RouterOutlet,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
@@ -25,6 +30,14 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './nav.html',
   styleUrl: './nav.css'
 })
-export class Nav {
+export class Nav implements OnInit {
 
+  constructor(
+    private router: Router) { 
+
+    }
+
+  ngOnInit(): void {
+    this.router.navigate(['home'])
+  }
 }
