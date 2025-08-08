@@ -2,30 +2,30 @@
     <mat-drawer #drawer class="sidenav" mode="side">
         <img src="/side-image.svg" alt="Imagem de navegação">
         <mat-nav-list class="nav-list">
-            <a mat-list-item routerLink="home">
+            <mat-list-item routerLink="home">
                 <i class="material-icons">home</i>
-                Home
-            </a>
-            <a mat-list-item routerLink="/tecnicos">
+                <a matLine>Home</a>
+            </mat-list-item>
+            <mat-list-item routerLink="/tecnicos">
                 <i class="material-icons">account_circle</i>
-                Técnicos
-            </a>
-            <a mat-list-item routerLink="clientes" >
+                <a matLine>Técnicos</a>
+            </mat-list-item>
+            <mat-list-item routerLink="clientes">
                 <i class="material-icons">person</i>
-                Clientes
-            </a>
-            <a mat-list-item routerLink="chamados">
+                <a matLine>Clientes</a>
+            </mat-list-item>
+            <mat-list-item routerLink="chamados">
                 <i class="material-icons">support</i>
-                Chamados
-            </a>
-            <a mat-list-item href="https://github.com/ValdirCezar/helpdesk-front" target="_blank">
+                <a matLine>Chamados</a>
+            </mat-list-item>
+            <mat-list-item href="https://github.com/akemimendes" target="_blank">
                 <i class="material-icons">code</i>
-                Github
-            </a>
-            <a mat-list-item routerLink="chamados">
+                <a matLine>Github</a>
+            </mat-list-item>
+            <mat-list-item (click)="logout()">
                 <i class="material-icons">logout</i>
-                Logout
-            </a>
+                <a matLine>Logout</a>
+            </mat-list-item>
         </mat-nav-list>
     </mat-drawer>
 

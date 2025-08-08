@@ -53,8 +53,6 @@ export class Login {
       .subscribe();
   }
 
-
-
   validaCampos(): boolean {
     return this.email.valid && this.senha.valid
   }

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Credenciais } from '../models/credenciais';
 import { API_CONFIG } from '../config/api.config';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { isPlatformBrowser } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +13,7 @@ export class Auth {
   jwtService: JwtHelperService = new JwtHelperService;
   private isBrowser: boolean;
 
-  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
-  }
+  constructor(private http: HttpClient) { }
 
   authenticate(creds: Credenciais) {
     return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, {
@@ -25,9 +23,7 @@ export class Auth {
   }
 
   successfulLogin(authToken: string) {
-    if (this.isBrowser) {
-      localStorage.setItem('token', authToken);
-    }
+    localStorage.setItem('token', authToken);
   }
 
   isAuthenticated() {

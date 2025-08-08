@@ -1,9 +1,10 @@
 .card{
     width: 90%;
     margin: 1rem auto;
+    font-size: 13px;
     background: rgb(235,235,235);
 }
 
 img{
-    height: 20rem;
+    height: 16rem;
 }

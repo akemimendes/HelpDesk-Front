@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Router,RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Header } from '../header/header';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -15,7 +15,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { Auth } from '../../services/auth';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -36,11 +37,18 @@ import { MatRadioModule } from '@angular/material/radio';
 export class Nav implements OnInit {
 
   constructor(
-    private router: Router) { 
-
-    }
+    private router: Router, 
+    private authService: Auth,
+    private toast:ToastrService) {
+  }
 
   ngOnInit(): void {
     this.router.navigate(['home'])
+  }
+
+  logout() {
+    this.router.navigate(['login'])
+    this.authService.logout();
+    this.toast.info('Logout realizado com sucesso', 'Logout')
   }
 }

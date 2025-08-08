@@ -15,16 +15,13 @@ img {
 }
 
 .sidenav a {
-   text-decoration: none; 
-   color: white;
+    color: white;
 }
 
 .sidenav i {
-   margin-right: .6rem;
-   color: white;
+    margin-right: .6rem;
+    color: white;
 }
-
-
 
 .menu {
     margin: 1rem 0 0 1rem;

@@ -1,34 +1,57 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableModule,MatTableDataSource } from '@angular/material/table';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
 import { Tecnico } from '../../../models/tecnico/tecnico';
-
+import { TecnicoService } from '../../../services/tecnico';
+import { Observable, tap } from 'rxjs';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-tecnico-list',
-  imports: [MatPaginator,MatTableModule,CdkTableModule],
+  imports: [
+    MatPaginator,
+    MatTableModule, 
+    CdkTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ],
   templateUrl: './tecnico-list.html',
   styleUrl: './tecnico-list.css'
 })
-export class TecnicoList {
-  ELEMENT_DATA: Tecnico[] = [{
-    id: '1',
-    nome:'Akemi Mendes',
-    email:'akemi@hotmail.com',
-    cpf: '054389084-86',
-    senha: '123',
-    perfis: ['0'],
-    dataCriacao:'15/08/2022'
-  }]
+export class TecnicoList implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','acoes'];
+  ELEMENT_DATA: Tecnico[] = []
+
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'acoes'];
   dataSource = new MatTableDataSource<Tecnico>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  constructor(
+    private service: TecnicoService) { }
+
+  ngOnInit(): void {
+    this.findAll();
   }
+
+  findAll() {
+    this.service.findAll().pipe(tap((res: Tecnico[]) => {
+      this.ELEMENT_DATA = res
+      this.dataSource = new MatTableDataSource<Tecnico>(res);
+      this.dataSource._updateChangeSubscription();
+      this.dataSource.paginator = this.paginator;
+    })).subscribe();
+
+  }
+
+   applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }
 
