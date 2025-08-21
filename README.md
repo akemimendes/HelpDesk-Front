@@ -1,6 +1,6 @@
 # Helpdesk - Front
 
-Projeto Help Desk - Front End com Angular.
+Projeto Help Desk - Front End com Angular do curso Udemy.
 
 Projeto em desenvolvimento, algumas funcionalidades já estão implementadas como:
 
